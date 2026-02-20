@@ -11,7 +11,23 @@ import (
 	// Network HTTP (for creating web servers)
 	// net/http is the foundation of all Go frameworks. Whether it's Gin or Fiber, they all ultimately call the logic here.
 	"net/http"
+	// Encoding JSON (for JSON serialization/deserialization)
+	"encoding/json"
 )
+
+// Define standard response structure (usually placed globally or in a dedicated folder)
+type ApiResponse struct {
+	Code    int         `json:"code"`    // Custom status code
+	Message string      `json:"message"` // Message for frontend display
+	Data    interface{} `json:"data"`    // Actual data content, can be anything
+}
+
+// Define specific business data structure
+type UserData struct {
+	ID    int    `json:"id"`
+	Email string `json:"email"`
+	Role  string `json:"role"`
+}
 
 // Program execution entry point
 func main() {
@@ -28,7 +44,34 @@ func main() {
 	mux.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
 		// Write response content
 		// Send the string through w back to the browser. Fprintln's F stands for File (in Linux philosophy, network connections are also file streams).
-		fmt.Fprintln(w, "hello, world!")
+		// fmt.Fprintln(w, "hello, world!")
+
+		// Set Header, tell the browser this is JSON format
+		w.Header().Set("Content-Type", "application/json")
+
+		// Define the data structure you want to return (usually use struct)
+		// data := map[string]interface{}{
+		// 	"status":  "success",
+		// 	"message": "hello, world! This is JSON format",
+		// 	"data": map[string]int{
+		// 		"id": 123,
+		// 	},
+		// }
+		// Use json package to convert map or struct to JSON and write to response
+		// json.NewEncoder(w).Encode(data)
+
+		// Instantiate struct
+		response := ApiResponse{
+			Code:    200,
+			Message: "Query successful",
+			Data: UserData{
+				ID:    1,
+				Email: "test@example.com",
+				Role:  "Admin",
+			},
+		}
+		// Encode and return
+		json.NewEncoder(w).Encode(response)
 	})
 
 	// Print a prompt before starting to let yourself know where to click the URL
