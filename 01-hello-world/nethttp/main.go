@@ -13,21 +13,9 @@ import (
 	"net/http"
 	// Encoding JSON (for JSON serialization/deserialization)
 	"encoding/json"
+
+	"github.com/go-mizu/go-fw/pkg/models"
 )
-
-// Define standard response structure (usually placed globally or in a dedicated folder)
-type ApiResponse struct {
-	Code    int         `json:"code"`    // Custom status code
-	Message string      `json:"message"` // Message for frontend display
-	Data    interface{} `json:"data"`    // Actual data content, can be anything
-}
-
-// Define specific business data structure
-type UserData struct {
-	ID    int    `json:"id"`
-	Email string `json:"email"`
-	Role  string `json:"role"`
-}
 
 // Program execution entry point
 func main() {
@@ -61,13 +49,13 @@ func main() {
 		// json.NewEncoder(w).Encode(data)
 
 		// Instantiate struct
-		response := ApiResponse{
+		response := models.ApiResponse{
 			Code:    200,
 			Message: "Query successful",
-			Data: UserData{
+			Data: models.UserData{
 				ID:    1,
 				Email: "test@example.com",
-				Role:  "Admin",
+				Role:  "Admin, nethttp",
 			},
 		}
 		// Encode and return
