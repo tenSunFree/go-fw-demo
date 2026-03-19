@@ -1,5 +1,5 @@
 module github.com/go-mizu/go-fw/02-application/mizu
 
-go 1.25
+go 1.26
 
-require github.com/go-mizu/mizu v0.2.2
+require github.com/go-mizu/mizu v0.5.26

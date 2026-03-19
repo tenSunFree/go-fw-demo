@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	// Import shared models from the project
 	"github.com/go-mizu/go-fw/pkg/models"
@@ -13,6 +14,7 @@ import (
 
 // Program execution entry point
 func main() {
+	fmt.Println("main")
 	// Create router
 	mux := newRouter()
 	// Create HTTP Server instance
@@ -32,11 +34,14 @@ func main() {
 
 // newRouter is responsible for defining all routing rules and corresponding handler logic
 func newRouter() http.Handler {
+	fmt.Println("newRouter")
 	// Create ServeMux router
 	mux := http.NewServeMux()
 	// Register root path route
 	// Go 1.22+ supports direct use of "METHOD /path" pattern
 	mux.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
+		// Add this line to see who is making the request.
+		fmt.Printf("Received request! Path is: %s\n", r.URL.Path)
 		// Set response format to JSON
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		// Create response data
@@ -49,6 +54,7 @@ func newRouter() http.Handler {
 				Role:  "Admin, nethttp-02",
 			},
 		}
+		json.NewEncoder(os.Stdout).Encode(response)
 		// Encode struct to JSON and write back to Response
 		if err := json.NewEncoder(w).Encode(response); err != nil {
 			http.Error(w, "failed to encode response", http.StatusInternalServerError)

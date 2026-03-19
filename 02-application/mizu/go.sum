@@ -1,2 +1,4 @@
 github.com/go-mizu/mizu v0.2.2 h1:sT5z/f5n2IJ3Zh+z6OFTgS/beySWi3+/K5fMhGl8tBQ=
 github.com/go-mizu/mizu v0.2.2/go.mod h1:Q17vnDnwIb91BuriPRl6emyteVK7EAprPrmJJMLPns0=
+github.com/go-mizu/mizu v0.5.26 h1:P01ARc9jVtvWqS/iFaUeuQ5USVZhbMWOS5gEtGf4ct8=
+github.com/go-mizu/mizu v0.5.26/go.mod h1:BZrCDNW7VPEdtZ4XtszDxsGnU2uSZt0jCcFNP9KIWm0=

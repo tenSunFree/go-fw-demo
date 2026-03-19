@@ -1,0 +1,48 @@
+# --- Compilation output binary files ---
+# Ignore all .exe files (Windows) or compilation results without file extensions
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+# If your executable is named main or app, you can specify it directly
+main
+app
+
+# --- Air Tool (Hot Reload) ---
+# Air by default temporarily stores the compilation in the tmp folder.
+/tmp/
+# Compilation error log file
+build-errors.log
+
+# --- Go Related Temporary Files ---
+# Unit test temporary files and coverage reports
+*.test
+*.out
+# Dependency library folder (if you run go mod vendor, consider whether to ignore it, usually recommended to ignore)
+# vendor/
+
+# --- IDE / Editor Settings ---
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+
+# JetBrains (GoLand / IntelliJ)
+.idea/
+
+# Vim temporary files
+*.swp
+*~
+
+# System files
+.DS_Store
+Thumbs.db
+
+# --- Logs & Environment Variables ---
+*.log
+.env
+# Exclude local development environment files
+.env.local
